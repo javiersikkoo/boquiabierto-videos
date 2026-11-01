@@ -35,6 +35,10 @@ Objetivo: 1 Short al día, todo animado con IA, publicado a las 19:30 (Europe/Ma
     (si ya pasó, mañana a las 19:30), red `youtube`, con
     `youtubeData: {title, type: "short", privacy: "public", tags, category: "EDUCATION", madeForKids: false, isAiGeneratedContent: true}`.
     Título < 70 caracteres con emoji y `#shorts`; descripción con el dato, la llamada a seguir y 5–6 hashtags.
+    **TikTok** (misma marca, misma hora, publicación aparte con `providers: [{"network":"tiktok"}]`): mismo vídeo,
+    `text` = gancho corto + emoji + «¿Lo sabías?» + 5–6 hashtags (incluido #aprendeentiktok), y
+    `tiktokData: {title (OBLIGATORIO, corto, con emoji), privacyOption: "PUBLIC_TO_EVERYONE", isAigc: true, autoAddMusic: false}`.
+    Comprobar antes con `getBrandSettings` que la marca tiene `tiktokData: boquiabierto.datoss`; si no, publicar solo en YouTube y avisar.
 11. **Marcar** la idea en `ideas.md` como `[x] … · publicado AAAA-MM-DD`, y añadir una línea a `publicados.md`
     (fecha, nº de idea, título, archivo, id de Metricool, fuente). Commit y push.
 12. **Limpieza**: borrar de `videos/` los mp4 de más de 5 días (Metricool guarda su propia copia). Commit y push.
