@@ -17,6 +17,13 @@ Objetivo: 1 Short al día, todo animado con IA, publicado a las 19:30 (Europe/Ma
 - Transcripción con tiempos por palabra: ElevenLabs `creative_transcribe_audio` (`eleven_scribe_v1`, gratis) conectado al nodo de la voz.
 - Montaje: `python3 tools/montaje.py config.json` (ver cabecera del script). Necesita ffmpeg y la fuente Inter Display Black.
 
+## Clips de Veo (Google Flow) subidos por Javier
+Si existe la carpeta `clips/idea-NN/` (NN = número de la idea del día, con dos cifras), **usa esos clips** de Veo en lugar
+de generar clips con ElevenLabs: no generes vídeo IA ese día (solo voz y, si faltan escenas, 1–2 imágenes).
+Pueden ser verticales u horizontales: el montaje encuadra igual. Quítales el audio (el montaje ya usa solo la voz).
+Si la carpeta tiene menos de 3 clips, completa con imágenes animadas, nunca con clips de ElevenLabs.
+Después de publicar, borra esa carpeta junto con la limpieza de vídeos.
+
 ## Pasos
 1. **Idea**: primera idea sin marcar de `ideas.md` (respetando la regla de categorías).
 2. **Verificar** el dato con 1–3 búsquedas web y abrir al menos una fuente fiable. Si no se confirma → marcarla `[~]` con el motivo y pasar a la siguiente.
