@@ -36,8 +36,9 @@ def probe_dur(path):
     return float(out)
 
 
-def band_chain(d, zbase, cx, cy, flash):
-    z = f"({zbase}+0.07*t/{d}+0.20*pow(max(0\\,1-t/0.28)\\,2))"
+def band_chain(d, zbase, cx, cy, flash, pan=0.0, zmove=0.07):
+    z = f"({zbase}+{zmove}*t/{d}+0.20*pow(max(0\\,1-t/0.28)\\,2))"
+    cx = f"({cx}+{pan}*t/{d})"
     chain = (
         "[src]split[a][b];"
         "[a]scale=-2:1920,crop=1080:1920,gblur=sigma=38,eq=brightness=-0.22:saturation=1.25[bg];"
@@ -69,6 +70,16 @@ def main(cfg_path):
         n = int(round(b * FPS)) - int(round(a * FPS))
         zb, cx, cy = s.get("zoom", 1.0), s.get("cx", 0.5), s.get("cy", 0.5)
         tmp, out = f"{W}/sc/tmp{k}.mp4", f"{W}/sc/p{k}.mp4"
+        if "image" in s:
+            # imagen fija con movimiento de cámara (zoom más marcado + paneo lateral)
+            pre = f"[0:v]fps={FPS},trim=end_frame={n},setpts=N/{FPS}/TB[src];"
+            cmd = ["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-framerate", str(FPS), "-i", f"{W}/{s['image']}"]
+            fc = pre + band_chain(d, zb, cx, cy, flash=(k > 0), pan=s.get("pan", 0.08), zmove=s.get("zmove", 0.16))
+            run(cmd + ["-filter_complex", fc, "-map", "[v]", "-an", "-frames:v", str(n), "-r", str(FPS),
+                       "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", tmp])
+            os.rename(tmp, out)
+            files.append(out)
+            continue
         if "freeze" in s:
             png = f"{W}/sc/freeze{k}.png"
             run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(s["at"]), "-i", f"{W}/{s['freeze']}", "-frames:v", "1", png])

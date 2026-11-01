@@ -7,7 +7,13 @@ Objetivo: 1 Short al día, todo animado con IA, publicado a las 19:30 (Europe/Ma
 - Metricool: marca con blogId **7795733** (su YouTube es UC3UI6XLCfcVYhm1_b1c885g = boquiabierto.datoss). Comprobar con
   `getBrandSettings` que el blogId sigue teniendo ese canal. NUNCA publicar en otra marca (la 7440516 es AquaPet).
 - Voz ElevenLabs: voice_id **18GZPpJvaVG53Nt3H52N** (SAM ADAM, latino neutro), modelo `eleven_v4`, `generations_count: 1`.
-- Vídeo IA: ElevenLabs `ltx-v2-fast` (clips de 6 s, 1920x1080, unos 1.454 créditos cada uno). 4 clips por Short.
+- **Formato (desde el 2026-11-03): MIXTO** → 2 clips de vídeo IA + 3 imágenes animadas por el montaje (~4.000 créditos por vídeo).
+  Los 2 clips van en los momentos clave: el GANCHO (primera escena) y el GIRO («Pero lo más loco es esto…»).
+  Las imágenes cubren las partes de explicación y el cierre. (Antes del 2026-11-03: 4 clips, todo animado.)
+- Vídeo IA: ElevenLabs `ltx-v2-fast` (clips de 6 s, 1920x1080, unos 1.454 créditos cada uno).
+- Imágenes: ElevenLabs `creative_generate_image` con `gemini-3.1-flash-lite-image`, `generations_count: 1` (~206 créditos).
+  Pedirlas en composición HORIZONTAL 16:9 con el sujeto centrado y «no text» (si se piden verticales, el modelo
+  añade bandas difuminadas a los lados). En el montaje: escena `{"image": "i1.jpg", "pan": 0.08}` (alternar el signo de `pan`).
 - Transcripción con tiempos por palabra: ElevenLabs `creative_transcribe_audio` (`eleven_scribe_v1`, gratis) conectado al nodo de la voz.
 - Montaje: `python3 tools/montaje.py config.json` (ver cabecera del script). Necesita ffmpeg y la fuente Inter Display Black.
 
@@ -17,11 +23,11 @@ Objetivo: 1 Short al día, todo animado con IA, publicado a las 19:30 (Europe/Ma
 3. **Guion** (55–65 palabras, 20–27 s): gancho en la primera frase (sin saludo), dato, giro con «Pero lo más loco es esto:»
    y cierre «Sígueme para más datos que no te enseñaron en el colegio.» Etiquetas de emoción de eleven_v4 al inicio de
    frases clave: `[intrigued]`, `[curious]`, `[excited]`. Nada que no esté verificado.
-4. **Flow** de ElevenLabs nuevo (`creative_create_flow`, nombre «Short NN - tema») y, en paralelo: la voz y 4 clips.
+4. **Flow** de ElevenLabs nuevo (`creative_create_flow`, nombre «Short NN - tema») y, en paralelo: la voz, los 2 clips y las 3 imágenes (formato mixto).
    Prompts de vídeo en inglés, cinematográficos, con el sujeto centrado («subject centered in frame»), un clip por momento
    del guion (gancho, explicación, giro, cierre). Sondear con `creative_get_flow_run_status`.
-5. **Revisar los clips**: sacar 3 fotogramas de cada uno y mirarlos. Si alguno sale deforme o no se entiende,
-   repetir SOLO ese clip una vez con un prompt mejor.
+5. **Revisar clips e imágenes**: sacar 3 fotogramas de cada clip y mirar cada imagen. Si algo sale deforme o no se entiende,
+   repetir SOLO esa pieza una vez con un prompt mejor.
 6. **Transcribir** la voz para tener los tiempos por palabra. Guardar la lista `words` en `words.json`.
 7. **Montar**: escribir `config.json` con escenas cortadas en los cambios de frase (escenas de 2,5–6 s; se pueden
    reutilizar clips con otro `src`, `reverse`, `zoom` o encuadre). Gancho de pantalla en 2 líneas cortas, en mayúsculas,
@@ -46,5 +52,6 @@ Objetivo: 1 Short al día, todo animado con IA, publicado a las 19:30 (Europe/Ma
     Si algo falló (créditos, conexión, Metricool), decir qué falló y qué falta, sin inventar que se publicó.
 
 ## Límites
-- Máximo 5 clips de vídeo por Short (4 + 1 repetición). Si no hay créditos suficientes, no publicar a medias: avisar.
+- Formato mixto: máximo 3 clips (2 + 1 repetición) y 4 imágenes por vídeo. Si no hay créditos suficientes, no publicar a medias:
+  avisar a Javier de que se han agotado los créditos de ElevenLabs para que conecte más.
 - No reproducir contenido con derechos de autor ni personajes conocidos; nada de personas reales identificables.
