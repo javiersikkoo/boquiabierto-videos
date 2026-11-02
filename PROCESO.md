@@ -24,6 +24,11 @@ Pueden ser verticales u horizontales: el montaje encuadra igual. Quítales el au
 Si la carpeta tiene menos de 3 clips, completa con imágenes animadas, nunca con clips de ElevenLabs.
 Después de publicar, borra esa carpeta junto con la limpieza de vídeos.
 
+## Descargas de ElevenLabs
+Desde el 2026-11-02 ElevenLabs entrega los archivos desde `elevenlabsusercontent.com`. Si la descarga falla con
+«CONNECT tunnel failed, response 403», ese dominio no está permitido en la red: NO publiques nada, y avisa a Javier
+de que tiene que añadir `elevenlabsusercontent.com` a los dominios permitidos (claude.ai → Configuración → Capacidades).
+
 ## Pasos
 1. **Idea**: primera idea sin marcar de `ideas.md` (respetando la regla de categorías).
 2. **Verificar** el dato con 1–3 búsquedas web y abrir al menos una fuente fiable. Si no se confirma → marcarla `[~]` con el motivo y pasar a la siguiente.

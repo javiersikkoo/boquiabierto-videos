@@ -7,7 +7,7 @@ coincide con la de ayer, coger la siguiente sin marcar de otra categoría.
 
 ## Potencial alto (1–35)
 - [x] 1. Este animal tiene 3 corazones — y uno se para cuando nada (pulpo) · publicado 2026-11-01
-- [ ] 2. Tu estómago se está digiriendo a sí mismo — su interior se renueva cada pocos días
+- [x] 2. Tu estómago se está digiriendo a sí mismo — su interior se renueva cada pocos días · publicado 2026-11-02
 - [ ] 3. ¿Qué pasaría si dejaras de dormir? — a los pocos días empiezas a alucinar
 - [ ] 4. El animal que no muere de viejo — la medusa que vuelve a ser joven
 - [ ] 5. ¿Qué pasa si te tragas un chicle? — no se queda 7 años dentro
