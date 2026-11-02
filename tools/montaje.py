@@ -41,7 +41,7 @@ def band_chain(d, zbase, cx, cy, flash, pan=0.0, zmove=0.07):
     cx = f"({cx}+{pan}*t/{d})"
     chain = (
         "[src]split[a][b];"
-        "[a]scale=-2:1920,crop=1080:1920,gblur=sigma=38,eq=brightness=-0.22:saturation=1.25[bg];"
+        "[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=38,eq=brightness=-0.22:saturation=1.25[bg];"
         f"[b]scale=w=-2:h='trunc({BAND_H}*{z}/2)*2':eval=frame,"
         f"crop=1080:{BAND_H}:'max(0\\,min(iw-1080\\,iw*{cx}-540))':'max(0\\,min(ih-{BAND_H}\\,ih*{cy}-{BAND_H}/2))'[fg];"
         f"[bg][fg]overlay=0:{BAND_Y}"
