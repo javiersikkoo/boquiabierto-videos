@@ -5,3 +5,4 @@
 | 2026-11-01 | 1 | Este animal tiene 3 corazones (y uno se para al nadar) | videos/2026-11-01_pulpo_3_corazones.mp4 | YT 412850644 · TikTok 412874566 | livescience.com/how-many-hearts-does-an-octopus-have |
 | 2026-11-02 | 2 | Tu estómago se está digiriendo a sí mismo (clips de Veo) | videos/2026-11-02_estomago_animado.mp4 | YT/TikTok uuid 7288606797518226964 / -2170460810651745038 | Li et al. 1997, Gastrointestinal Endoscopy (vía culinarylore.com) |
 | 2026-11-03 | 3 | ¿Qué te pasa si no duermes en 3 días? (clips de Veo, preparado el 2026-11-02) | videos/2026-11-03_dormir.mp4 | YT 414467080 · TikTok 414467106 | pubmed.ncbi.nlm.nih.gov/30042701 · iflscience (Randy Gardner) |
+| 2026-11-04 | 4 | Este animal no se muere de viejo (2 clips de Veo + imagen) | videos/2026-11-04_medusa_inmortal.mp4 | YT 416206238 · TikTok 416206246 | amnh.org/explore/news-blogs/immortal-jellyfish · en.wikipedia.org/wiki/Turritopsis_dohrnii |
